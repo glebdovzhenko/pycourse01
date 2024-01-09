@@ -2,7 +2,7 @@ from boilerplate import setUpModule, TestStudentReport
 import numpy as np
 
 
-class TestTask01(TestStudentReport):
+class TestPrakt00(TestStudentReport):
     """
     This is an example of how the student reports can be checked.
     
@@ -10,7 +10,7 @@ class TestTask01(TestStudentReport):
     3 variable definitions: a, b, c.
     This test case compares the values of these variables against some hard-coded values.
     """
-    _report_name = 'task01'
+    _report_name = 'Prakt00.Prakt00'
     
     def test_a(self):
         """
