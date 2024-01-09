@@ -1,2 +1,5 @@
-.DS_Store
+**/.DS_Store
 venv
+SETENV.sh
+**/.ipynb_checkpoints
+**/__pycache__
