@@ -1,4 +1,4 @@
-import io, os, sys, types, unittest, importlib
+import io, os, sys, types
 from IPython import get_ipython
 from nbformat import read
 from IPython.core.interactiveshell import InteractiveShell
@@ -92,30 +92,3 @@ class NotebookFinder(object):
             self.loaders[key] = NotebookLoader(path)
         return self.loaders[key]
 
-
-def setUpModule():
-    sys.meta_path.append(NotebookFinder())
-
-
-class TestStudentReport(unittest.TestCase):
-    _report_name = ''
-
-    def __init__(self, 
-                 methodName: str = "runTest") -> None:
-        super().__init__(methodName)
-
-    @classmethod
-    def setUpClass(cls):
-        cls._report = importlib.import_module(cls._report_name)
-    
-    @property
-    def report(self):
-        return self._report.__dict__
-
-
-if __name__ == '__main__':
-
-    print(find_notebook('task01'))
-    sys.meta_path.append(NotebookFinder())
-    md = importlib.import_module('task01')
-    print(md.__dict__)
