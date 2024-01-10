@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2 class="text-capitalize">{{ group_name }} {{ student_name }}</h2>
+            </div>
+        </div>
+    {% for test_cls_name, tests_methods in results.items() %}
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-10">
+                <table class='table table-hover table-responsive'>
+                    <thead>
+                        <tr>
+                            <th>{{ test_cls_name }}</th>
+                            <th>Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for test_mtd_name, test_mtd_outcome in tests_methods.items() %}
+                        <tr class='{{ tr_object.status_tags[test_mtd_outcome] }}'>
+                            <td class="col-xs-9">{{ test_mtd_name }}</td>
+                            <td class="col-xs-3">
+                                <span class="label label-{{ tr_object.status_tags[test_mtd_outcome] }}">
+                                    {% if test_mtd_outcome == tr_object.SUCCESS %}
+                                        Верно
+                                    {% elif test_mtd_outcome == tr_object.SKIP %}
+                                        Пропущено
+                                    {% elif test_mtd_outcome == tr_object.FAILURE %}
+                                        Неверно
+                                    {% else %}
+                                        Ошибка, обратитесь к преподавателю
+                                    {% endif %}
+                                </span>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <tr>
+                            <td>
+                               {{ summaries[test_case_name] }}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('td').on('click', '.btn', function(e){
+                e.preventDefault();
+                var $this = $(this);
+                var $nextRow = $this.closest('tr').next('tr');
+                $nextRow.slideToggle("fast");
+                $this.text(function(i, text){
+                    if (text === 'View') {
+                        return 'Hide';
+                    } else {
+                        return 'View';
+                    };
+                });
+            });
+        });
+    </script>
+</body>
+</html>
