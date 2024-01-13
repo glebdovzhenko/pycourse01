@@ -25,26 +25,40 @@
                     </thead>
                     <tbody>
                         {% for test_mtd_name, test_mtd_outcome in tests_methods.items() %}
-                        <tr class='{{ tr_object.status_tags[test_mtd_outcome] }}'>
+                        <tr class='{{ tr_object.status_tags[test_mtd_outcome[0]] }}'>
                             <td class="col-xs-9">{{ test_mtd_name }}</td>
                             <td class="col-xs-3">
-                                <span class="label label-{{ tr_object.status_tags[test_mtd_outcome] }}">
-                                    {% if test_mtd_outcome == tr_object.SUCCESS %}
+                                <span class="label label-{{ tr_object.status_tags[test_mtd_outcome[0]] }}">
+                                    {% if test_mtd_outcome[0] == tr_object.SUCCESS %}
                                         Верно
-                                    {% elif test_mtd_outcome == tr_object.SKIP %}
+                                    {% elif test_mtd_outcome[0] == tr_object.SKIP %}
                                         Пропущено
-                                    {% elif test_mtd_outcome == tr_object.FAILURE %}
+                                    {% elif test_mtd_outcome[0] == tr_object.FAILURE %}
                                         Неверно
                                     {% else %}
-                                        Ошибка, обратитесь к преподавателю
+                                        Код вызвал ошибку
                                     {% endif %}
                                 </span>
+                                {% if test_mtd_outcome[1] %}
+                                    &nbsp<button class="btn btn-default btn-xs">Сообщение</button>
+                                {% endif %}
                             </td>
                         </tr>
+                        {% if test_mtd_outcome[1] %}
+                            <tr style="display:none;">
+                                <td class="col-xs-9">
+                                    <p>{{ test_mtd_outcome[1] }}</p>
+                                </td>
+                            </tr>
+                        {% endif %}
                         {% endfor %}
                         <tr>
                             <td>
-                               {{ summaries[test_case_name] }}
+                                {% if summaries[test_cls_name] %}
+                                <p class="text-success">Выполнено</p>
+                                {% else %}
+                                <p class="text-danger">Не выполнено</p>
+                                {% endif %}
                             </td>
                         </tr>
                     </tbody>
