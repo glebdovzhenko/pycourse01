@@ -14,7 +14,7 @@ dest_addr = 'assignments'
 
 
 if __name__ == '__main__':
-    abs_source_addr = os.path.join(os.path.dirname(__file__), source_addr)
+    abs_source_addr = os.path.join(os.path.dirname(__file__), '..', source_addr)
     source_basename = os.path.basename(source_addr)
     if not os.path.exists(abs_source_addr):
         raise FileNotFoundError(
