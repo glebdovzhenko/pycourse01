@@ -10,7 +10,7 @@ USERS_LIST = [
 
 
 source_addr = 'assignments/01_pset.ipynb'
-dest_addr = ''
+dest_addr = 'assignments'
 
 
 if __name__ == '__main__':
@@ -23,19 +23,25 @@ if __name__ == '__main__':
 
 
     for uname in USERS_LIST:
-        abspath_uhome = os.path.join('/', 'home', 'jupyter-' + uname)
+        full_uname = 'jupyter-' + uname
+        abspath_uhome = os.path.join('/', 'home', full_uname)
+
         if not os.path.exists(abspath_uhome):
             raise FileNotFoundError(
                 'User home dir %s does not exist' % abspath_uhome
             )
         
-        abspath_dest = os.path.join(abspath_uhome, source_basename)
+        abspath_dest = os.path.join(
+            abspath_uhome, 
+            dest_addr, 
+            source_basename
+        )
         shutil.copy(
             abs_source_addr,
             abspath_dest
         )
         shutil.chown(
             abspath_dest,
-            user='jupyter-' + uname,
-            group='jupyter-' + uname
+            user=full_uname,
+            group=full_uname
         )
