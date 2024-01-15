@@ -36,6 +36,6 @@ if __name__ == '__main__':
         )
         shutil.chown(
             abspath_dest,
-            user=uname,
-            group=uname
+            user='jupyter-' + uname,
+            group='jupyter-' + uname
         )
