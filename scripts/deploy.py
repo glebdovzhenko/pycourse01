@@ -21,6 +21,7 @@ if __name__ == '__main__':
             'Source file %s does not exist' % abs_source_addr
         )
 
+    dest_addr = dest_addr.split(os.path.sep)
 
     for uname in USERS_LIST:
         full_uname = 'jupyter-' + uname
@@ -31,11 +32,19 @@ if __name__ == '__main__':
                 'User home dir %s does not exist' % abspath_uhome
             )
         
-        abspath_dest = os.path.join(
-            abspath_uhome, 
-            dest_addr, 
-            source_basename
-        )
+        abspath_dest = abspath_uhome
+        for subdir in dest_addr:
+            abspath_dest = os.path.join(abspath_dest, subdir)
+            if not os.path.exists(abspath_dest):
+                os.mkdir(abspath_dest)
+                shutil.chown(
+                    abspath_dest,
+                    user=full_uname,
+                    group=full_uname
+                )
+        else:
+            abspath_dest = os.path.join(abspath_dest, source_basename)
+
         shutil.copy(
             abs_source_addr,
             abspath_dest
