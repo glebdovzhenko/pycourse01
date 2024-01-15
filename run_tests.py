@@ -1,4 +1,4 @@
-import answers
+import tests
 from unittest import TextTestRunner, TextTestResult, TestLoader
 from HtmlTestRunner import HTMLTestRunner
 from test_engine import JinjaTestRunner, JinjaTestResult
@@ -21,6 +21,6 @@ if __name__ == '__main__':
         resultclass=JinjaTestResult,
         extra_context=DEFAULT_CONTEXT
     )
-    suite = TestLoader().loadTestsFromModule(answers)
+    suite = TestLoader().loadTestsFromModule(tests)
     runner.run(suite)
 
