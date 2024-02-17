@@ -4,3 +4,4 @@ SETENV.sh
 **/.ipynb_checkpoints
 **/__pycache__
 reports
+.idea
