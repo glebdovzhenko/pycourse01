@@ -12,6 +12,9 @@ in pkgs.mkShell {
       scipy
       pandas
       jupyterlab
+      # before were course requirements
+      # from this point on requirements are experimental
+      nbformat
     ]))
 
   ];
