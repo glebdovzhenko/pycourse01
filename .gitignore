@@ -5,3 +5,5 @@ SETENV.sh
 **/__pycache__
 reports
 .idea
+.direnv
+.envrc
