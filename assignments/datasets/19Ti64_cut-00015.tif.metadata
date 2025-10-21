@@ -1,0 +1,32 @@
+[metadata]
+width=2048
+height=2048
+qxrdVersion=unknown
+qtVersion=unknown
+dataType=5
+dataTypeName=Subtracted Data
+fileBase=19Ti64_cut-00015.tif
+fileName=E:/Gleb2016/Sept2016/19Ti64_cut/19Ti64_cut-00015.tif
+title=19Ti64_cut-00015.tif
+readoutMode=0
+exposureTime=1
+summedExposures=1
+imageNumber=15
+phaseNumber=0
+nPhases=1
+dateTime=@Variant(\0\0\0\x10\0%\x80:\x2Q\xa0\x10\xff)
+dateString=2016.09.26 : 10:48:23.824
+hBinning=1
+vBinning=1
+cameraGain=2
+triggered=1
+userComment1=
+userComment2=
+userComment3=
+userComment4=
+imageSaved=1
+normalization=@Variant(\0\0\0\x7f\0\0\0\xfQcepDoubleList\0\0\0\0\0)
+used=true
+
+[normalization]
+size=0
